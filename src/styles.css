@@ -1,0 +1,459 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,600;1,100&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100svh;
+  background-color: #222;
+}
+
+/* Main Circle */
+
+.main--circle {
+  display: grid;
+  place-content: center;
+  width: 60vmin;
+  height: 60vmin;
+  background: #17141d;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 1rem 1rem 0.5rem rgba(0, 0, 0, 0.5);
+  transition: all 0.3s;
+  animation: animate 2.3s ease-in-out infinite;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    transform: translateY(10px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.main--circle:hover {
+  animation-play-state: paused;
+}
+
+.main--circle h1 {
+  text-align: center;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  text-shadow: none;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.clkme {
+  position: absolute;
+  bottom: 4rem;
+  left: 9rem;
+  color: #555;
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.main--circle:hover .clkme {
+  opacity: 1;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  width: 90%;
+}
+
+/* Circles behind */
+
+.circles {
+  width: 20vmin;
+  height: 20vmin;
+  background: #17141d;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  transition-delay: calc(0.1s * var(--i));
+}
+
+/* Circles Content */
+
+.circles .content {
+  font-size: 0;
+  padding: 0;
+  color: white;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+/* Close Button */
+
+.circles.cards .close--btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Cards */
+
+.circles.cards {
+  position: relative;
+  height: 21rem;
+  width: 15rem;
+  border-radius: 1rem;
+  box-shadow: -1rem 0 0.5rem rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: all 0.3s;
+  transition-delay: calc(0.1s * var(--i));
+  overflow: hidden;
+}
+
+.cards .content {
+  padding: 1em;
+  font-size: 1em;
+  margin-bottom: -2rem;
+}
+
+.cards .heading {
+  font-size: 2em;
+}
+
+.cards:hover .content {
+  opacity: 1;
+}
+
+.cards:hover {
+  transform: translateY(-1rem);
+}
+
+.cards:hover ~ .cards {
+  transform: translateX(50px);
+}
+
+.cards:not(:first-child) {
+  margin-left: -50px;
+}
+
+.circles.cards.full--cards .close--btn {
+  opacity: 1;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  height: 2.5rem;
+  width: 2.5rem;
+  transform: rotate(45deg);
+  padding: 0.2em 0.5em;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 2.5rem;
+  font-weight: 600;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.circles.cards.full--cards .close--btn:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Cards in Full Size */
+
+.circles.cards.full--cards {
+  position: absolute;
+  height: 60vh;
+  width: 60vw;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  padding: 1rem;
+  z-index: 10;
+  transition: all 0.8s;
+}
+
+.full--cards.cards:hover {
+  transform: translateY(0);
+}
+
+.full--cards .content {
+  opacity: 1;
+  font-size: 1.3em;
+  font-weight: 900;
+  line-height: 2em;
+  word-spacing: 0.1em;
+  margin-top: -1.3rem;
+}
+
+.full--cards:first-child .content {
+  line-height: 1.6em;
+}
+
+.full--cards .heading {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 900;
+  text-shadow: 1rem 0.5rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+/* For small size Mobiles  */
+
+@media (max-width: 320px) {
+  .main--circle h1 {
+    font-size: 1.2em;
+  }
+
+  .circles.cards {
+    height: 12.5rem;
+    width: 6.5rem;
+  }
+
+  .cards:hover {
+    transform: translateY(0);
+  }
+
+  .cards:hover ~ .cards {
+    transform: translateX(0);
+  }
+
+  .cards:not(:first-child) {
+    margin-left: -50px;
+  }
+
+  .cards .content {
+    font-size: 1em;
+    opacity: 1;
+  }
+
+  .circles.cards.full--cards .close--btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    height: 1.6rem;
+    width: 1.6rem;
+    font-size: 1.6rem;
+  }
+
+  .circles.cards.full--cards {
+    position: absolute;
+    height: 60vh;
+    width: 90vw;
+    padding: 1rem 0.3rem;
+  }
+
+  .circles.full--cards.cards:not(:first-child) {
+    margin-left: 0;
+  }
+
+  .full--cards .content {
+    font-size: 0.8em;
+    word-spacing: 0;
+    font-weight: 600;
+    margin-top: -1.5rem;
+  }
+
+  .full--cards:first-child .content {
+    line-height: 1.4em;
+  }
+
+  .full--cards .heading {
+    font-size: 1.4em;
+  }
+}
+
+/* For medium size Mobiles  */
+
+@media (min-width: 321px) and (max-width: 375px) {
+  .main--circle h1 {
+    font-size: 1.2em;
+  }
+
+  .circles.cards {
+    height: 12.5rem;
+    width: 8rem;
+  }
+
+  .cards:hover {
+    transform: translateY(0);
+  }
+
+  .cards:hover ~ .cards {
+    transform: translateX(0);
+  }
+
+  .cards:not(:first-child) {
+    margin-left: -50px;
+  }
+
+  .cards .content {
+    font-size: 1em;
+    opacity: 1;
+  }
+
+  .circles.cards.full--cards .close--btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    height: 1.6rem;
+    width: 1.6rem;
+    font-size: 1.6rem;
+  }
+
+  .circles.cards.full--cards {
+    position: absolute;
+    height: 40vh;
+    width: 90vw;
+    padding: 1rem 0.3rem;
+  }
+
+  .circles.full--cards.cards:not(:first-child) {
+    margin-left: 0;
+  }
+
+  .full--cards .content {
+    font-size: 0.8em;
+    word-spacing: 0;
+    font-weight: 600;
+    margin-top: -1.5rem;
+  }
+
+  .full--cards:first-child .content {
+    line-height: 1.4em;
+  }
+
+  .full--cards .heading {
+    font-size: 1.4em;
+  }
+}
+
+/* For large size Mobiles  */
+
+@media (min-width: 376px) and (max-width: 425px) {
+  .main--circle h1 {
+    font-size: 1.2em;
+  }
+
+  .circles.cards {
+    height: 12.5rem;
+    width: 8rem;
+  }
+
+  .cards:hover {
+    transform: translateY(0);
+  }
+
+  .cards:hover ~ .cards {
+    transform: translateX(0);
+  }
+
+  .cards:not(:first-child) {
+    margin-left: -50px;
+  }
+
+  .cards .content {
+    font-size: 1em;
+    opacity: 1;
+  }
+
+  .circles.cards.full--cards .close--btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    height: 1.6rem;
+    width: 1.6rem;
+    font-size: 1.6rem;
+  }
+
+  .circles.cards.full--cards {
+    position: absolute;
+    height: 50vh;
+    width: 80vw;
+    padding: 1rem 0.3rem;
+  }
+
+  .circles.full--cards.cards:not(:first-child) {
+    margin-left: 0;
+  }
+
+  .full--cards .content {
+    font-size: 0.8em;
+    word-spacing: 0;
+    font-weight: 600;
+    margin-top: -1.5rem;
+  }
+
+  .full--cards:first-child .content {
+    line-height: 1.4em;
+  }
+
+  .full--cards .heading {
+    font-size: 1.4em;
+  }
+}
+
+/* For Tablet */
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .cards:hover {
+    transform: translateY(0);
+  }
+
+  .cards:hover ~ .cards {
+    transform: translateX(0);
+  }
+
+  .cards:not(:first-child) {
+    margin-left: -50px;
+  }
+
+  .cards .content {
+    opacity: 1;
+  }
+
+  .circles.cards.full--cards {
+    position: absolute;
+    height: 70vh;
+    width: 85vw;
+    padding: 1rem 0.3rem;
+  }
+
+  .circles.full--cards.cards:not(:first-child) {
+    margin-left: 0;
+  }
+
+  .full--cards .content {
+    line-height: 1.8em;
+  }
+
+  .full--cards:first-child .content {
+    line-height: 1.4em;
+  }
+}
+
+/* For Laptop */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .circles.cards.full--cards {
+    position: absolute;
+    height: 60vh;
+    width: 65vw;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    padding: 1rem;
+    z-index: 10;
+    transition: all 0.8s;
+  }
+}
